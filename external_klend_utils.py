@@ -163,10 +163,15 @@ async def get_elevation_group_dict(lending_market_pubkey):
         # elevation group 0 is the default, i.e. no special elevation group benefits
         if group.id != 0:
             elevation_group_dict[group.id] = {
+                "id": group.id,
                 "max_liquidation_bonus_bps": group.max_liquidation_bonus_bps,
                 "ltv_pct": group.ltv_pct,
                 "liquidation_threshold_pct": group.liquidation_threshold_pct,
                 "allow_new_loans": group.allow_new_loans,
+                "max_reserves_as_collateral": group.max_reserves_as_collateral,
+                "padding0": group.padding0,
+                "debt_reserve": group.debt_reserve,
+                "padding1": group.padding1,
             }
     return elevation_group_dict
 
