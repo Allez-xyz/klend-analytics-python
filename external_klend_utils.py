@@ -33,7 +33,12 @@ from solana.rpc.types import DataSliceOpts, MemcmpOpts
 
 
 from kamino_client.client import KaminoClient
-from codegen_lend.accounts import *
+from codegen_lend.accounts.obligation import Obligation
+from codegen_lend.accounts.reserve import Reserve
+
+logging.basicConfig(level=logging.INFO)
+
+EXTERNAL_KLEND_UTILS_VERSION = 2
 
 MAX_SCOPE_TRIES = 5
 MAX_API_TRIES = 5
@@ -60,6 +65,7 @@ LENDING_MARKETS = {
     "main_market": "7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF",
     "jlp_market": "DxXdAyU3kCjnyggvHmY5nAwg5cRbbmdyX3npfDMjjMek",
     "altcoin_market": "ByYiZxp8QrdN9qbdtaAiePN8AAr3qvTPppNJDpf5DVJ5",
+    "ethena_market": "BJnbcRHqvppTyGesLzWASGKnmnF1wq9jZu6ExrjT7wvF",
 }
 
 NULL_PUBKEY = Pubkey.from_string("11111111111111111111111111111111")
@@ -183,6 +189,7 @@ async def get_loans_metrics(
     lending_market=LENDING_MARKETS["main_market"],
 ):
     # get token mint to token name map
+    logging.info("V2")
     mint_to_str_map, str_to_mint_map = await get_scope_mints_to_str_map()
 
     uri = os.getenv("SOLANARPC_HTTP_URI")
