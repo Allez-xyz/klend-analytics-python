@@ -13,3 +13,4 @@ kamino_lending.json
 
 #### Changelog
 Updated codegen_lend to work with the IDL of release 1.6.2
+<!-- Claude VPS test - 2026-03-25T21:35:25Z -->
